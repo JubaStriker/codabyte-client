@@ -6,6 +6,8 @@ import { BiUserPlus, BiHomeAlt } from 'react-icons/bi';
 import { AuthContext } from '../Context/AuthContextProvider';
 import { FaUserCircle } from 'react-icons/fa';
 import { BsFillFileEarmarkPlusFill } from 'react-icons/bs';
+import logo from '../Assets/Codabyte.png';
+import logoText from '../Assets/Logo-text.png';
 
 
 
@@ -33,10 +35,10 @@ const Main = () => {
                     <div className="flex flex-no-wrap">
                         {/* Sidebar starts */}
                         <div className="absolute lg:relative w-64 h-auto shadow bg-gray-100 hidden lg:block">
-                            <div className="h-16 w-full flex items-center px-8">
+                            <div className="h-16 w-full flex items-center px-2">
                                 <Link to='/' className="flex items-center mb-4 sm:mb-0">
-                                    <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-8" alt="Flowbite Logo" />
-                                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-teal-500">CodaByte</span>
+                                    <img src={logo} className="mr-0 h-8" alt="Flowbite Logo" />
+                                    <img src={logoText} width={168} alt="" />
                                 </Link>
                             </div>
                             <ul className=" py-6">
@@ -83,10 +85,10 @@ const Main = () => {
                                 <div className="flex flex-col justify-between h-full w-full">
                                     <div>
                                         <div className="flex items-center justify-between px-8">
-                                            <div className="h-16 w-full flex items-center">
-                                                <Link to='/' className="flex items-center  sm:mb-0">
-                                                    <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-8" alt="Flowbite Logo" />
-                                                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-teal-500">CodaByte</span>
+                                            <div className="h-16 w-full flex items-center py-4 my-2">
+                                                <Link to='/' className="flex items-center mb-4 sm:mb-0">
+                                                    <img src={logo} className="mr-0 h-8" alt="Flowbite Logo" />
+                                                    <img src={logoText} width={120} alt="" />
                                                 </Link>
                                             </div>
                                             <div id="closeSideBar" className="flex items-center justify-center h-10 w-10" onClick={() => setShow(!show)}>
@@ -122,8 +124,8 @@ const Main = () => {
                                             </li>
                                             <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                                 <div className="flex items-center">
-                                                    <BsFillFileEarmarkPlusFill />
-                                                    <span className="ml-2">
+                                                    <BsFillFileEarmarkPlusFill className='text-2xl' />
+                                                    <span className="ml-2 xl:text-base md:text-2xl text-base">
                                                         <Link to='/courses'>Courses</Link>
                                                     </span>
                                                 </div>
@@ -171,7 +173,7 @@ const Main = () => {
                                     <div className="w-full hidden lg:flex">
                                         <div className="w-full flex items-center pl-8 justify-end gap-2">
                                             <div>
-                                                {photo ? <><img className='rounded-full h-9 w-9' src={photo} alt="" srcset="" /></> : <FaUserCircle className='text-3xl' />}
+                                                {photo ? <><img className='rounded-full h-9 w-9' src={photo} alt='' title={user.displayName} srcset="" /></> : <FaUserCircle className='text-3xl' />}
                                             </div>
 
                                             <div className="flex items-center relative cursor-pointer" onClick={() => setProfile(!profile)}>

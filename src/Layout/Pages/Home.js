@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import Typewriter from 'typewriter-effect';
 import { AuthContext } from '../../Context/AuthContextProvider';
+import logo from '../../Assets/Codabyte.png'
+import logoText from '../../Assets/Logo-text.png'
 
 const Home = () => {
 
@@ -11,7 +13,7 @@ const Home = () => {
         name = user.displayName
     }
     else {
-        name = 'Stranger'
+        name = 'Visitor'
     }
 
 
@@ -29,6 +31,12 @@ const Home = () => {
                 />
 
 
+            </div>
+
+            <div className='flex flex-col items-center md:flex-row justify-center mt-12'>
+                <h1 className='text-4xl md:text-6xl mr-5 pt-2 font-mono'>Welcome to </h1>
+                <img src={logo} alt="" height={100} width={100} />
+                <img src={logoText} height={100} width={400} alt="" />
             </div>
 
         </div>

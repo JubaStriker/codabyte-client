@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye, AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc'
 import { AuthContext } from '../../../Context/AuthContextProvider';
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { Player } from '@lottiefiles/react-lottie-player';
 
 const Login = () => {
 
     const { signIn, providerLogin, user } = useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
 
     const [showPass, setShowPass] = useState(false);
     const handleShowPass = () => {
@@ -43,6 +44,15 @@ const Login = () => {
                 console.error('Error', error);
             });
 
+    }
+    const handleGithubLogin = () => {
+        providerLogin(githubProvider)
+            .then(result => {
+                const user = result.user;
+            })
+            .catch(error => {
+                console.error('Error', error);
+            })
 
 
     }
@@ -72,7 +82,7 @@ const Login = () => {
                         <FcGoogle className='text-2xl' />
                         <p className="text-base font-medium ml-4 text-gray-700">Continue with Google</p>
                     </button>
-                    <button aria-label="Continue with github" className="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4">
+                    <button onClick={handleGithubLogin} aria-label="Continue with github" className="focus:outline-none  focus:ring-2 focus:ring-offset-1 focus:ring-gray-700 py-3.5 px-4 border rounded-lg border-gray-700 flex items-center w-full mt-4">
                         <AiFillGithub className='text-2xl' />
                         <p className="text-base font-medium ml-4 text-gray-700">Continue with Github</p>
                     </button>
