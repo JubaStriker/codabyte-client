@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet } from 'react-router-dom';
 import Footer from './Pages/Shared/Footer';
 import { IoMdLogIn } from 'react-icons/io';
 import { BiUserPlus, BiHomeAlt } from 'react-icons/bi';
@@ -42,36 +42,45 @@ const Main = () => {
                                 </Link>
                             </div>
                             <ul className=" py-6">
-                                <li className="pl-6 cursor-pointer text-white text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5  text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                     <div className="flex items-center">
-                                        <div>
-                                            <BiHomeAlt className='text-lg' />
-                                        </div>
-                                        <span className="ml-2">
 
-                                            <Link to='/home'>Home</Link></span>
+                                        <span className="ml-2 flex">
+
+                                            <NavLink to='/home' className={({ isActive }) =>
+                                                isActive ? "text-indigo-700 flex" : "flex"
+                                            }> <BiHomeAlt className='text-lg' />  <p className='pt-1 ml-1'>Home</p></NavLink>
+                                        </span>
                                     </div>
                                 </li>
                                 <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-4 mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                     <div className="flex items-center">
-                                        <BiUserPlus className='text-xl' />
-                                        <span className="ml-2">
-                                            <Link to='/signup'>Signup</Link>
+                                        <span className="ml-2 flex">
+
+                                            <NavLink to='/signup' className={({ isActive }) =>
+                                                isActive ? "text-indigo-700 flex" : "flex"
+                                            }> <BiUserPlus className='text-xl' /><p className='pt-1 ml-1'>Sign up</p></NavLink>
                                         </span>
+
+
                                     </div>
                                 </li>
                                 <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                     <div className="flex items-center">
-                                        <IoMdLogIn className='text-lg' />
+
                                         <span className="ml-2">
-                                            <Link to='/login'>Login</Link></span>
+                                            <NavLink to='/login' className={({ isActive }) =>
+                                                isActive ? "text-indigo-700 flex" : "flex"
+                                            }> <IoMdLogIn className='text-lg' /><p className='pt-1 ml-1'>Login</p></NavLink>
+                                        </span>
                                     </div>
                                 </li>
                                 <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                     <div className="flex items-center">
-                                        <BsFillFileEarmarkPlusFill />
                                         <span className="ml-2">
-                                            <Link to='/courses'>Courses</Link>
+                                            <NavLink to='/courses' className={({ isActive }) =>
+                                                isActive ? "text-indigo-700 flex" : "flex"
+                                            }> <BsFillFileEarmarkPlusFill className='text-lg' /><p className='pt-1 ml-1'>Courses</p></NavLink>
                                         </span>
                                     </div>
                                 </li>
