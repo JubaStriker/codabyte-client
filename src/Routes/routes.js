@@ -6,6 +6,7 @@ import Home from "../Layout/Pages/Home";
 import Login from "../Layout/Pages/Login/Login";
 import Signup from "../Layout/Pages/Login/Signup";
 import Premium from "../Layout/Pages/Premium";
+import PrivateRoute from "./PrivateRoute";
 
 export const routes = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ export const routes = createBrowserRouter([
         {
             path: '/checkout/:id',
             loader: ({ params }) => fetch(`https://coda-byte-server.vercel.app/details/${params.id}`),
-            element: <Premium />
+            element: <PrivateRoute><Premium /></PrivateRoute>
         }
 
         ]
