@@ -5,6 +5,7 @@ import { IoMdLogIn } from 'react-icons/io';
 import { BiUserPlus, BiHomeAlt } from 'react-icons/bi';
 import { AuthContext } from '../Context/AuthContextProvider';
 import { FaUserCircle } from 'react-icons/fa';
+import { CiLight, CiDark } from 'react-icons/ci';
 import { BsFillFileEarmarkPlusFill } from 'react-icons/bs';
 import logo from '../Assets/Codabyte.png';
 import logoText from '../Assets/Logo-text.png';
@@ -16,6 +17,7 @@ const Main = () => {
     const { user, logOut } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [profile, setProfile] = useState(false);
+    const [toggleTheme, setToggleTheme] = useState(false);
     let photo;
     if (user && user.photoURL) {
         photo = user.photoURL;
@@ -42,6 +44,15 @@ const Main = () => {
                                 </Link>
                             </div>
                             <ul className=" py-6">
+                                <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5  text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                    <div className="flex items-center">
+
+                                        <span onClick={() => setToggleTheme(!toggleTheme)} className="ml-2 flex">
+                                            {toggleTheme ? <><CiLight className='text-indigo-700 text-lg font-bold' /> <p className='pt-1 ml-1'>Light</p></> : <><CiDark className='text-indigo-700 text-lg font-bold' /> <p className='pt-1 ml-1'>Dark</p></>}
+
+                                        </span>
+                                    </div>
+                                </li>
                                 <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5  text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                     <div className="flex items-center">
 
@@ -109,6 +120,15 @@ const Main = () => {
                                             </div>
                                         </div>
                                         <ul className=" py-6">
+                                            <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5  text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                                <div className="flex items-center">
+
+                                                    <span onClick={() => setToggleTheme(!toggleTheme)} className="ml-2 flex">
+                                                        {toggleTheme ? <><CiLight className='text-indigo-700 text-lg font-bold' /> <p className='pt-1 ml-1'>Light</p></> : <><CiDark className='text-indigo-700 text-lg font-bold' /> <p className='pt-1 ml-1'>Dark</p></>}
+
+                                                    </span>
+                                                </div>
+                                            </li>
                                             <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                                 <div className="flex items-center">
                                                     <div className="w-6 h-6 md:w-8 md:h-8">

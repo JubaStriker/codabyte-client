@@ -1,11 +1,12 @@
 import React from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { TiTick } from 'react-icons/ti'
 import { AiTwotoneCrown } from 'react-icons/ai'
 
+
 const CourseDetails = () => {
     const details = useLoaderData()
-    console.log(details);
+
 
 
     return (
@@ -96,8 +97,16 @@ const CourseDetails = () => {
 
                             </div>
                         </div>
+
+
                     </div>
                 </div>
+
+                {/* <button type="button" className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 ">Green to Blue</button> */}
+                <Link to={`/checkout/${details._id}`}>
+                    <p className='w-96 sm:w-80 text-white rounded-lg mx-auto text-center px-3 py-2 bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 cursor-pointer shadow-lg'>Get Premium Access</p>
+                </Link>
+
             </div>
 
         </div>

@@ -5,7 +5,7 @@ import CourseCard from '../../components/CourseCard';
 const Courses = () => {
 
     const courses = useLoaderData();
-    console.log(courses);
+
 
     return (
         <div className=' bg-gradient-to-tl from-gray-400 to-gray-100 '>
