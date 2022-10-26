@@ -109,7 +109,7 @@ const Main = () => {
                                             </div>
                                         </div>
                                         <ul className=" py-6">
-                                            <li className="pl-6 cursor-pointer text-white text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                            <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                                 <div className="flex items-center">
                                                     <div className="w-6 h-6 md:w-8 md:h-8">
                                                         <BiHomeAlt className='text-2xl' />

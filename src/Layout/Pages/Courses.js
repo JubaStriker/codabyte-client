@@ -9,7 +9,7 @@ const Courses = () => {
 
     return (
         <div className=' bg-gradient-to-tl from-gray-400 to-gray-100 '>
-            <h1>Total courses to explore {courses ? courses.length : ''}</h1>
+
 
 
             <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
