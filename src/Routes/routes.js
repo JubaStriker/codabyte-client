@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
+import CourseDetails from "../Layout/Pages/CourseDetails";
 import Courses from "../Layout/Pages/Courses";
 import Home from "../Layout/Pages/Home";
 import Login from "../Layout/Pages/Login/Login";
@@ -26,8 +27,14 @@ export const routes = createBrowserRouter([
             element: <Signup />
         },
         {
-            path: 'courses',
+            path: '/courses',
+            loader: () => fetch('https://coda-byte-server.vercel.app/courses'),
             element: <Courses />
+        },
+        {
+            path: '/courses/:id',
+            loader: ({ params }) => fetch(`https://coda-byte-server.vercel.app/details/${params.id}`),
+            element: <CourseDetails />
         }
 
         ]
