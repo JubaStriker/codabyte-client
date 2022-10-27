@@ -38,7 +38,7 @@ const Main = () => {
     return (
         <div>
             <>
-                <div className="w-full h-full bg-slate-800">
+                <div className="w-full  bg-slate-800">
                     <div className="flex flex-no-wrap">
                         {/* Sidebar starts */}
                         <div className="absolute lg:relative w-64 h-auto shadow bg-gray-100 hidden lg:block">
@@ -115,7 +115,7 @@ const Main = () => {
                             </ul>
                         </div>
                         {/*Mobile responsive sidebar*/}
-                        <div className={show ? "w-full h-full absolute z-40  transform  translate-x-0 " : "   w-full h-full absolute z-40  transform -translate-x-full"} id="mobile-nav">
+                        <div className={show ? "w-full absolute z-40  transform  translate-x-0 " : "   w-full h-full absolute z-40  transform -translate-x-full"} id="mobile-nav">
 
                             <div className="bg-gray-800 opacity-50 absolute h-full w-full lg:hidden" onClick={() => setShow(!show)} />
                             <div className="absolute z-40 sm:relative w-64 md:w-96 shadow pb-4 bg-gray-100 lg:hidden transition duration-150 ease-in-out h-full">

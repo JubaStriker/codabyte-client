@@ -7,7 +7,7 @@ const Footer = () => {
     return (
         <div>
 
-            <footer className="p-4 bg-sky-900 rounded-b-lg shadow md:px-6 md:py-8">
+            <footer className="p-4 bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 rounded-b-lg shadow md:px-6 md:py-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <Link to='/' className="flex items-center mb-4 sm:mb-0">
                         <img src={logo} className="mr-3 h-8" alt="CodaByte Logo" />
