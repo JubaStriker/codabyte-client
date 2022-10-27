@@ -4,7 +4,7 @@ import Footer from './Pages/Shared/Footer';
 import { IoMdLogIn } from 'react-icons/io';
 import { BiUserPlus, BiHomeAlt } from 'react-icons/bi';
 import { AuthContext } from '../Context/AuthContextProvider';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaUserCircle, FaBlogger } from 'react-icons/fa';
 import { CiLight, CiDark } from 'react-icons/ci';
 import { BsFillFileEarmarkPlusFill } from 'react-icons/bs';
 import { MdOutlineArrowDropDownCircle } from 'react-icons/md';
@@ -112,10 +112,23 @@ const Main = () => {
                                             </span>
                                         </div>
                                     </li> : ''}
+                                <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-4 mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                    <div className="flex items-center">
+                                        <span className="ml-2 flex">
+
+                                            <NavLink to='/blog' className={({ isActive }) =>
+                                                isActive ? "text-indigo-700 flex" : "flex"
+                                            }> <FaBlogger className='text-xl' /><p className='pt-1 ml-1'>Blog</p></NavLink>
+                                        </span>
+
+
+                                    </div>
+                                </li>
+
                             </ul>
                         </div>
                         {/*Mobile responsive sidebar*/}
-                        <div className={show ? "w-full absolute z-40  transform  translate-x-0 " : "   w-full h-full absolute z-40  transform -translate-x-full"} id="mobile-nav">
+                        <div className={show ? "w-full h-full absolute z-40  transform  translate-x-0 " : "   w-full h-full absolute z-40  transform -translate-x-full"} id="mobile-nav">
 
                             <div className="bg-gray-800 opacity-50 absolute h-full w-full lg:hidden" onClick={() => setShow(!show)} />
                             <div className="absolute z-40 sm:relative w-64 md:w-96 shadow pb-4 bg-gray-100 lg:hidden transition duration-150 ease-in-out h-full">
@@ -172,7 +185,7 @@ const Main = () => {
                                                 <div className="flex items-center">
                                                     <BsFillFileEarmarkPlusFill className='text-2xl' />
                                                     <span className="ml-2 xl:text-base md:text-2xl text-base ">
-                                                        <Link className='flex' to='/courses'><p>Courses</p> <MdOutlineArrowDropDownCircle onClick={() => setShowCourses(!showCourses)} className='text-3xl pt-2 ml-1' /></Link>
+                                                        <Link className='flex' to='/courses'><p>Courses</p> </Link>
 
                                                     </span>
                                                 </div>
@@ -188,6 +201,15 @@ const Main = () => {
                                                         </span>
                                                     </div>
                                                 </li> : ''}
+                                            <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal mt-4 mb-4 py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                                                <div className="flex items-center">
+                                                    <FaBlogger className='text-2xl' />
+                                                    <span className="ml-2 xl:text-base md:text-2xl text-base ">
+                                                        <Link className='flex' to='/blog'><p>Blog</p> </Link>
+
+                                                    </span>
+                                                </div>
+                                            </li>
                                         </ul>
                                     </div>
                                     <div className="w-full">
@@ -221,7 +243,7 @@ const Main = () => {
                         </div>
                         {/*Mobile responsive sidebar*/}
                         {/* Sidebar ends */}
-                        <div className="w-full">
+                        <div className="w-full h-full">
                             {/* Navigation starts */}
                             <nav className="h-16 flex items-center lg:items-stretch justify-end lg:justify-between bg-gray-100 shadow relative z-10">
                                 <div className="hidden lg:flex w-full pr-6">

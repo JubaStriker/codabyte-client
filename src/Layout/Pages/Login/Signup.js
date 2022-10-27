@@ -1,18 +1,21 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
 import { useContext, useState } from 'react';
 import { AuthContext } from '../../../Context/AuthContextProvider';
 import { Player } from '@lottiefiles/react-lottie-player';
-import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
+import { getAuth, GithubAuthProvider, GoogleAuthProvider, updateProfile } from 'firebase/auth';
+import app from '../../../Firebase/FirebaseConfig/FireBaseConfig';
 
 const Signup = () => {
-
-    const { createUser, providerLogin } = useContext(AuthContext)
+    const auth = getAuth(app)
+    const { createUser, providerLogin, profileUpdate } = useContext(AuthContext)
 
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
+    const navigate = useNavigate();
 
     const [showPass, setShowPass] = useState(false);
+    const [error, setError] = useState('');
     const handleShowPass = () => {
         setShowPass(!showPass);
     }
@@ -23,14 +26,23 @@ const Signup = () => {
         const email = form.email.value;
         const password = form.password.value;
         const name = form.name.value;
+        const photoURL = form.photoURL.value;
 
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                console.log(user);
+                updateProfile(auth.currentUser, {
+                    displayName: name,
+                    photoURL: photoURL
+                })
+                    .then(() => { })
+                    .catch(error => { setError(error.message) })
+
             })
             .catch(error => {
                 console.error(error)
+                setError(error.message)
             })
     }
 
@@ -104,18 +116,23 @@ const Signup = () => {
                     <form onSubmit={handleOnSubmit} action="">
                         <div>
                             <p className="text-sm font-medium leading-none text-gray-800">Name</p>
-                            <input aria-label="enter email address" type="text"
+                            <input placeholder="enter your name" type="text"
                                 name='name' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                         </div>
                         <div className="mt-6  w-full">
+                            <p className="text-sm font-medium leading-none text-gray-800">Photo URL</p>
+                            <input placeholder="enter photo URL" type="text"
+                                name='photoURL' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
+                        </div>
+                        <div className="mt-6  w-full">
                             <p className="text-sm font-medium leading-none text-gray-800">Email</p>
-                            <input aria-label="enter email address" type="email"
+                            <input placeholder="enter email address" type="email"
                                 name='email' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                         </div>
                         <div className="mt-6  w-full">
                             <p className="text-sm font-medium leading-none text-gray-800">Password</p>
                             <div className="relative flex items-center justify-center">
-                                <input aria-label="enter Password" type={showPass ? "text" : "password"}
+                                <input placeholder="enter Password" type={showPass ? "text" : "password"}
                                     name='password' className="bg-gray-200 border rounded focus:outline-none text-xs font-medium leading-none text-gray-800 py-3 w-full pl-3 mt-2" />
                                 <div onClick={handleShowPass} className="absolute right-0 mt-2 mr-3 cursor-pointer">
                                     {showPass ? <AiOutlineEye /> : <AiOutlineEyeInvisible />}
@@ -127,6 +144,7 @@ const Signup = () => {
                                 Sign up
                             </button>
                         </div>
+                        <div className='text-red-600 text-sm mt-4'>{error}</div>
                     </form>
                 </div>
             </div>
