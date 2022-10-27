@@ -2,10 +2,30 @@ import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { TiTick } from 'react-icons/ti'
 import { AiTwotoneCrown } from 'react-icons/ai'
+import jsPDF from 'jspdf';
 
 
 const CourseDetails = () => {
     const details = useLoaderData()
+
+    const handleDownload = () => {
+        const doc = new jsPDF();
+
+        doc.text(
+            `Course name : ${details.name}
+            Cost: ${details.price} USD.
+            Language description : ${details.about.slice(0, 40)}
+            ${details.about.slice(40, 100)}
+            ${details.about.slice(100, 200)}
+            ${details.about.slice(200, 300)}
+            ${details.about.slice(300, 400)}
+            ${details.about.slice(400, 500)}
+            `,
+            10,
+            10,
+        );
+        doc.save(`${details.name}.pdf`);
+    };
 
 
 
@@ -15,6 +35,7 @@ const CourseDetails = () => {
                 <div className="mx-auto sm:text-center lg:max-w-2xl">
                     <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
                         <div>
+                            <div><small onClick={handleDownload}>Click to download course details pdf   <button onClick={handleDownload} type="button" className="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-3 py-1 text-center mr-2 mb-2">Download</button></small></div>
                             <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
                                 Welcome to {details.name} course
                             </p>
@@ -58,10 +79,8 @@ const CourseDetails = () => {
                             alt=""
                         />
                     </div>
-                    <p className="max-w-xl mb-4 text-base text-gray-700 sm:mx-auto">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                        minim veniam, quis nostrud ullamco laboris aliquip ex ea.
+                    <p className="max-w-xl py-8 mb-4 text-base text-gray-700 sm:mx-auto">
+                        {details.about}
                     </p>
 
 
