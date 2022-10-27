@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AiOutlineEyeInvisible, AiOutlineEye, AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc'
 import { AuthContext } from '../../../Context/AuthContextProvider';
@@ -11,8 +11,13 @@ const Login = () => {
     const { signIn, providerLogin, user } = useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || '/';
 
     const [showPass, setShowPass] = useState(false);
+    const [error, setError] = useState('');
     const handleShowPass = () => {
         setShowPass(!showPass);
     }
@@ -22,16 +27,20 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+
 
         signIn(email, password)
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error);
+                setError(error.message);
             });
+        form.reset();
 
     }
 
@@ -112,6 +121,8 @@ const Login = () => {
                                 Login
                             </button>
                         </div>
+
+                        <div>{error}</div>
                     </form>
                 </div>
             </div>
