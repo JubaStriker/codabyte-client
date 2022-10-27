@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 export const routes = createBrowserRouter([
     {
         path: '/',
+        loader: () => fetch('https://coda-byte-server.vercel.app/courses'),
         element: <Main></Main>,
         children: [{
             path: '/',

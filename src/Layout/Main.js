@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { Link, NavLink, Outlet, useLoaderData } from 'react-router-dom';
 import Footer from './Pages/Shared/Footer';
 import { IoMdLogIn } from 'react-icons/io';
 import { BiUserPlus, BiHomeAlt } from 'react-icons/bi';
@@ -7,6 +7,7 @@ import { AuthContext } from '../Context/AuthContextProvider';
 import { FaUserCircle } from 'react-icons/fa';
 import { CiLight, CiDark } from 'react-icons/ci';
 import { BsFillFileEarmarkPlusFill } from 'react-icons/bs';
+import { MdOutlineArrowDropDownCircle } from 'react-icons/md';
 import logo from '../Assets/Codabyte.png';
 import logoText from '../Assets/Logo-text.png';
 
@@ -14,10 +15,14 @@ import logoText from '../Assets/Logo-text.png';
 
 const Main = () => {
 
+    const courses = useLoaderData();
+
     const { user, logOut } = useContext(AuthContext);
     const [show, setShow] = useState(false);
     const [profile, setProfile] = useState(false);
     const [toggleTheme, setToggleTheme] = useState(false);
+    const [showCourses, setShowCourses] = useState(false);
+
     let photo;
     if (user && user.photoURL) {
         photo = user.photoURL;
@@ -91,10 +96,22 @@ const Main = () => {
                                         <span className="ml-2">
                                             <NavLink to='/courses' className={({ isActive }) =>
                                                 isActive ? "text-indigo-700 flex" : "flex"
-                                            }> <BsFillFileEarmarkPlusFill className='text-lg' /><p className='pt-1 ml-1'>Courses</p></NavLink>
+                                            }> <BsFillFileEarmarkPlusFill className='text-lg' /><p className='pt-1 ml-1'>Courses
+                                                </p> <MdOutlineArrowDropDownCircle onClick={() => setShowCourses(!showCourses)} className='text-xl pt-1 ml-1' /></NavLink>
                                         </span>
                                     </div>
                                 </li>
+                                {showCourses ?
+                                    <li className="pl-8 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-1 focus:text-indigo-700 focus:outline-none">
+                                        <div className="flex items-center">
+                                            <span className="ml-2">
+                                                {courses.map(course => <NavLink to={`/courses/${course._id}`} className={({ isActive }) =>
+                                                    isActive ? "text-indigo-700 flex my-2" : "flex"
+                                                }> <p className='pt-1 ml-1'>{course.name}
+                                                    </p></NavLink>)}
+                                            </span>
+                                        </div>
+                                    </li> : ''}
                             </ul>
                         </div>
                         {/*Mobile responsive sidebar*/}
@@ -154,11 +171,23 @@ const Main = () => {
                                             <li className="pl-6 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                                 <div className="flex items-center">
                                                     <BsFillFileEarmarkPlusFill className='text-2xl' />
-                                                    <span className="ml-2 xl:text-base md:text-2xl text-base">
-                                                        <Link to='/courses'>Courses</Link>
+                                                    <span className="ml-2 xl:text-base md:text-2xl text-base ">
+                                                        <Link className='flex' to='/courses'><p>Courses</p> <MdOutlineArrowDropDownCircle onClick={() => setShowCourses(!showCourses)} className='text-3xl pt-2 ml-1' /></Link>
+
                                                     </span>
                                                 </div>
                                             </li>
+                                            {showCourses ?
+                                                <li className="pl-8 cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-1 focus:text-indigo-700 focus:outline-none">
+                                                    <div className="flex items-center">
+                                                        <span className="ml-2">
+                                                            {courses.map(course => <NavLink to={`/courses/${course._id}`} className={({ isActive }) =>
+                                                                isActive ? "text-indigo-700 flex my-2" : "flex"
+                                                            }> <p className='pt-1 ml-1 text-xl'>{course.name}
+                                                                </p></NavLink>)}
+                                                        </span>
+                                                    </div>
+                                                </li> : ''}
                                         </ul>
                                     </div>
                                     <div className="w-full">

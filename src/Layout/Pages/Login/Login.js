@@ -48,9 +48,12 @@ const Login = () => {
         providerLogin(googleProvider)
             .then(result => {
                 const user = result.user;
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('Error', error);
+                setError(error.message);
             });
 
     }
@@ -58,9 +61,12 @@ const Login = () => {
         providerLogin(githubProvider)
             .then(result => {
                 const user = result.user;
+                setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('Error', error);
+                setError(error.message);
             })
 
 
@@ -122,7 +128,7 @@ const Login = () => {
                             </button>
                         </div>
 
-                        <div>{error}</div>
+                        <div className='text-red-600 text-sm mt-4'>{error}</div>
                     </form>
                 </div>
             </div>
