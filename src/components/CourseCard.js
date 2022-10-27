@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const CourseCard = ({ course }) => {
 
-    const { name, picture, price, time, _id } = course;
+    const { name, picture, price, _id } = course;
 
 
     return (

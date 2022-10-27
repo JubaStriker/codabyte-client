@@ -35,6 +35,8 @@ const Main = () => {
             .catch(error => (console.error('Error: ', error)));
     }
 
+    console.log(user);
+
     return (
         <div>
             <>
@@ -96,7 +98,7 @@ const Main = () => {
                                         <span className="ml-2">
                                             <NavLink to='/courses' className={({ isActive }) =>
                                                 isActive ? "text-indigo-700 flex" : "flex"
-                                            }> <BsFillFileEarmarkPlusFill className='text-lg' /><p className='pt-1 ml-1'>Courses
+                                            }> <BsFillFileEarmarkPlusFill className='text-lg' /><p onClick={() => setShowCourses(!showCourses)} className='pt-1 ml-1'>Courses
                                                 </p> <MdOutlineArrowDropDownCircle onClick={() => setShowCourses(!showCourses)} className='text-xl pt-1 ml-1' /></NavLink>
                                         </span>
                                     </div>
@@ -130,7 +132,7 @@ const Main = () => {
                         {/*Mobile responsive sidebar*/}
                         <div className={show ? "w-full h-full absolute z-40  transform  translate-x-0 " : "   w-full h-full absolute z-40  transform -translate-x-full"} id="mobile-nav">
 
-                            <div className="bg-gray-800 opacity-50 absolute h-full w-full lg:hidden" onClick={() => setShow(!show)} />
+                            <div className="bg-gray-800 opacity-50 absolute h-full w-full lg:hidden pb-9" onClick={() => setShow(!show)} />
                             <div className="absolute z-40 sm:relative w-64 md:w-96 shadow pb-4 bg-gray-100 lg:hidden transition duration-150 ease-in-out h-full">
                                 <div className="flex flex-col justify-between h-full w-full">
                                     <div>
@@ -149,7 +151,7 @@ const Main = () => {
                                                 </svg>
                                             </div>
                                         </div>
-                                        <ul className=" py-6">
+                                        <ul className=" py-1">
                                             <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5  text-gray-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">
                                                 <div className="flex items-center">
 
@@ -227,7 +229,7 @@ const Main = () => {
                                                     <p className="md:text-xl text-gray-800 text-base leading-4 ml-2">{user ? user.email : ''}</p>
                                                 </div>
                                                 <div className='flex justify-around'>
-                                                    <div>{photo ? <><img className='rounded-full h-8 w-8' src={photo} alt="" srcset="" /></> : <FaUserCircle className='text-3xl' />}</div>
+                                                    <div>{photo ? <><img className='rounded-full h-8 w-8' src={photo} alt="" /></> : <FaUserCircle className='text-3xl' />}</div>
 
                                                     <div> {user ? <button onClick={handleSignOut} type="button" className="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">Sign out</button> :
                                                         <Link to='/login'>
@@ -253,7 +255,7 @@ const Main = () => {
                                     <div className="w-full hidden lg:flex">
                                         <div className="w-full flex items-center pl-8 justify-end gap-2">
                                             <div>
-                                                {photo ? <><img className='rounded-full h-9 w-9' src={photo} alt='' title={user.displayName} srcset="" /></> : <FaUserCircle className='text-3xl' />}
+                                                {photo ? <><img className='rounded-full h-9 w-9' src={photo} alt='' title={user.displayName} /></> : <FaUserCircle className='text-3xl' />}
                                             </div>
 
                                             <div className="flex items-center relative cursor-pointer" onClick={() => setProfile(!profile)}>
